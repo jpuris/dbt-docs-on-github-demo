@@ -4,32 +4,30 @@ on: [push]
 
 jobs:
   dbt_docs_generate:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
-      - name: Check out
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v6
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.12.13"
-         
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
       # pip install dbt
-      - name: Install dependencies
-        run: |
-          pip install dbt-core==1.11.11
-          pip install dbt-duckdb==1.10.1
-          dbt deps --project-dir dbt_project
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
-      # dbt related commands - 
-      - name: Generate dbt docs
-        run: dbt docs generate --project-dir dbt_project --profiles-dir dbt_project
+    # dbt related commands - 
+    - name: Generate dbt docs
+      run: dbt docs generate --project-dir dbt_project --profiles-dir dbt_project
 
-      - name: Deploy to GitHub Pages
-        if: success()
-        uses: crazy-max/ghaction-github-pages@v3
-        with:
-          target_branch: gh-pages
-          build_dir: target
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+    - name: Deploy to GitHub Pages
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v3
+      with:
+        target_branch: gh-pages
+        build_dir: target
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
