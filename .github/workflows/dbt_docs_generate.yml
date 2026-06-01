@@ -22,5 +22,14 @@ jobs:
           dbt deps --project-dir dbt_project
 
       # dbt related commands - 
-      - name: Run dbt models
+      - name: Generate dbt docs
         run: dbt docs generate --project-dir dbt_project --profiles-dir dbt_project
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: target
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
