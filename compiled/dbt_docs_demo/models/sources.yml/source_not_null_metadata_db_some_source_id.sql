@@ -5,7 +5,7 @@
 
 
 select id
-from "dev"."main"."my_first_dbt_model"
+from "dev"."metadata_db"."some_source"
 where id is null
 
 

@@ -1,0 +1,1 @@
+select * from "dev"."metadata_db"."some_source"
