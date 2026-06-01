@@ -1,7 +1,9 @@
 name: dbt_docs_generate
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
