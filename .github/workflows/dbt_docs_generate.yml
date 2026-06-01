@@ -1,6 +1,7 @@
 name: dbt_docs_generate
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
   dbt_docs_generate:
