@@ -1,0 +1,26 @@
+name: dbt_docs_generate
+
+on: [push]
+
+jobs:
+  dbt_docs_generate:
+    runs-on: self-hosted
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12.13"
+         
+      # pip install dbt
+      - name: Install dependencies
+        run: |
+          pip install dbt-core==1.11.11
+          pip install dbt-duckdb==1.10.1
+          dbt deps --project-dir dbt_project
+
+      # dbt related commands - 
+      - name: Run dbt models
+        run: dbt docs generate --project-dir dbt_project --profiles-dir dbt_project
