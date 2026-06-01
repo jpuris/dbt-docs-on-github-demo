@@ -1,0 +1,53 @@
+sources:
+
+  - name: metadata_db
+    description: This is the source for the metadata database.
+    tags: ["src", "metadata", "database"]
+    tables:
+      - name: some_source
+        description: >
+          This is the source for the some_source table. It contains data to support metadata driven pipelines.
+        columns:
+          - name: id
+            description: Primary key of the orders table
+            data_tests:
+              - unique
+              - not_null
+          - name: status
+            description: Note that the status can change over time
+          - name: created_at
+            description: The timestamp when the record was created
+          - name: updated_at
+            description: The timestamp when the record was last updated
+          - name: pre_transform_query
+            description: The query used to transform the data before loading into the table
+          - name: post_transform_query
+            description: The query used to transform the data after loading into the table
+          - name: source_query
+            description: The query used to extract the data from the source system
+
+  - name: another_source
+    tags: ["src", "api", "endpoint"]
+    description: This is the source for another database.
+    tables:
+      - name: some_api_endpoint
+        description: >
+          This is the source defined for an API endpoint.
+        columns:
+          - name: id
+            description: Primary key of the orders table
+            data_tests:
+              - unique
+              - not_null
+          - name: base_url
+            description: The base URL of the API endpoint
+          - name: endpoint_path
+            description: The path of the API endpoint
+          - name: http_method
+            description: The HTTP method used to call the API endpoint
+          - name: body
+            description: The body of the API request
+          - name: created_at
+            description: The timestamp when the record was created
+          - name: updated_at
+            description: The timestamp when the record was last updated

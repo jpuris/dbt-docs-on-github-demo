@@ -1,0 +1,1 @@
+select * from {{ source('metadata_db', 'some_source') }}

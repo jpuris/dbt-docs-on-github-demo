@@ -1,0 +1,9 @@
+
+version: 2
+
+models:
+  - name: some_pipeline_one
+    description: "Some demo pipeline model to show off dbt docs features"
+
+  - name: some_pipeline_two
+    description: "Some demo pipeline model to show off dbt docs features"

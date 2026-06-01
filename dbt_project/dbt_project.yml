@@ -17,13 +17,16 @@ clean-targets:
 
 models:
   dbt_docs_demo:
-    +materialized: table
-    changeme:
-      +tags: ["changeme"]
-      changeme:
-        +tags: ["changeme"]
+    domain_one:
+      some_pipeline_one:
+        +tags: ["some_tag", "bronze"]
         +docs:
-          node_color: "#71706e"
-        changeme:
-          +tags: ["changeme"]
-          +schema: "changeme"
+          node_color: "#cc410e"
+      some_pipeline_two:
+        +tags: ["some_tag_two", "silver"]
+        +docs:
+          node_color: "#7d0ecc"
+      some_destination_one:
+        +tags: ["some_tag_three", "silver"]
+        +docs:
+          node_color: "#7d0ecc"
